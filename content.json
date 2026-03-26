@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "eyebrow": "Available for new projects · 2026",
+    "headline": ["Crafting digital", "experiences & identities", "that endure."],
+    "headlineEm": [false, true, false],
+    "description": "Independent creative developer & designer building refined digital products, brand identities, and interactive experiences for visionary clients worldwide.",
+    "cta": "View Work",
+    "photo": "assets/hero-photo.jpg"
+  },
+  "work": [
+    { "id": 1, "name": "Void Studio — Brand Identity", "tags": ["Branding", "Digital"], "image": null, "gradient": "linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)", "featured": true, "link": "#" },
+    { "id": 2, "name": "Novara — Web Platform", "tags": ["Dev", "UI"], "image": null, "gradient": "linear-gradient(135deg, #0d1b2a 0%, #1b2838 100%)", "featured": false, "link": "#" },
+    { "id": 3, "name": "Arc — Design System", "tags": ["Systems", "UX"], "image": null, "gradient": "linear-gradient(135deg, #1c1c1c 0%, #2d2d2d 100%)", "featured": false, "link": "#" },
+    { "id": 4, "name": "Kuma — Interactive Exhibit", "tags": ["Motion", "Experience"], "image": null, "gradient": "linear-gradient(135deg, #0a1628 0%, #142236 50%, #1e3250 100%)", "featured": false, "link": "#" },
+    { "id": 5, "name": "Pulse — Mobile App", "tags": ["App", "UX"], "image": null, "gradient": "linear-gradient(135deg, #131313 0%, #222 100%)", "featured": false, "link": "#" }
+  ],
+  "about": {
+    "bio": [
+      "I'm <strong>Octoguss</strong> — an independent creative developer and designer with a deep commitment to craft, clarity, and meaningful detail.",
+      "My work lives at the intersection of <strong>design and technology</strong>. I help brands and startups build digital presences that are not only beautiful but purposeful — systems that scale, experiences that resonate.",
+      "With a background spanning brand identity, interaction design, and front-end engineering, I bring a holistic perspective to every project — from initial strategy through to pixel-perfect execution."
+    ],
+    "skills": ["Brand Identity", "UI / UX Design", "Web Development", "Motion Design", "Figma", "React", "TypeScript", "Three.js", "Creative Direction"],
+    "stats": [
+      { "number": "40+", "label": "Projects Delivered" },
+      { "number": "6+", "label": "Years of Experience" },
+      { "number": "18", "label": "Happy Clients" },
+      { "number": "∞", "label": "Iterations Made" }
+    ]
+  },
+  "services": [
+    { "num": "01", "name": "Brand & Identity", "desc": "Visual identity systems, logo design, typography, color strategy, brand guidelines, and packaging — built to last and scale." },
+    { "num": "02", "name": "Web & Digital", "desc": "High-performance websites, interactive applications, and design systems. Clean code, thoughtful UX, and obsessive attention to detail." },
+    { "num": "03", "name": "Motion & Experience", "desc": "Animations, micro-interactions, immersive digital experiences, and creative direction that brings brands to life in motion." }
+  ],
+  "contact": {
+    "label": "Let's work together",
+    "headline": ["Have a project in mind?", "Let's make something", "remarkable."],
+    "headlineEm": [false, true, false],
+    "email": "hello@octoguss.com",
+    "socials": [
+      { "label": "GitHub", "url": "#" },
+      { "label": "Dribbble", "url": "#" },
+      { "label": "LinkedIn", "url": "#" },
+      { "label": "Instagram", "url": "#" }
+    ]
+  },
+  "footer": {
+    "copy": "© 2026 Octoguss. All rights reserved."
+  }
+}

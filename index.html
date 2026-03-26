@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCTOGUSS — Portfolio</title>
+<style>
+    /* ─── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #010100;
+      --fg:       #e8e6e1;
+      --muted:    #5a5855;
+      --accent:   #e8e6e1;
+      --border:   #1e1e1e;
+      --hover-bg: #141414;
+      --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ─── Scrollbar ────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* ─── Layout ───────────────────────────────────────── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── Header / Nav ─────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(1, 1, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    nav a {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--fg);
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover { color: var(--fg); }
+    nav a:hover::after { width: 100%; }
+
+    .timestamp {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── Hero ─────────────────────────────────────────── */
+    #hero {
+      height: 934px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 353px 40px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo {
+      position: absolute;
+      left: 34.9%;   /* 669px / 1916px canvas */
+      top: -161px;
+      width: 53.5%;  /* 1024px / 1916px canvas */
+      height: 1536px;
+      pointer-events: none;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transform: scaleX(-1); /* flip horizontal — equivalente ao -scale-y-100 rotate-180 do Figma */
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-headline {
+      font-size: clamp(36px, 6vw, 88px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      margin-bottom: 48px;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--muted);
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-desc {
+      max-width: 380px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .hero-scroll {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .hero-scroll:hover { color: var(--fg); }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--muted);
+      transition: width 0.3s ease, background 0.2s;
+    }
+
+    .hero-scroll:hover .scroll-line {
+      width: 60px;
+      background: var(--fg);
+    }
+
+    /* Marquee strip */
+
+    /* ─── Section Base ─────────────────────────────────── */
+    section {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 3vw, 42px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .section-link {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .section-link svg { transition: transform 0.2s; }
+    .section-link:hover { color: var(--fg); }
+    .section-link:hover svg { transform: translateX(4px); }
+
+    /* ─── Work Grid ────────────────────────────────────── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .work-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--border);
+      cursor: pointer;
+    }
+
+    .work-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16/7;
+    }
+
+    .work-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s;
+      opacity: 0.85;
+      display: block;
+    }
+
+    /* Placeholder gradient thumbnails */
+    .work-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s;
+      opacity: 0.85;
+    }
+
+    .work-item:hover .work-thumb,
+    .work-item:hover .work-thumb-placeholder {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+
+    .work-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 28px 28px 24px;
+      background: linear-gradient(transparent, rgba(12,12,12,0.88));
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      transform: translateY(4px);
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .work-item:hover .work-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .work-name {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .work-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .work-tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--muted);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    /* ─── About ────────────────────────────────────────── */
+    #about {
+      background: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-text p strong {
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .stat {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .skills-list {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-chip {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-chip:hover {
+      border-color: var(--muted);
+      color: var(--fg);
+    }
+
+    /* ─── Services ─────────────────────────────────────── */
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-item {
+      padding: 40px 0;
+      border-right: 1px solid var(--border);
+      padding-right: 40px;
+      padding-left: 0;
+    }
+
+    .service-item:last-child { border-right: none; }
+    .service-item:not(:first-child) { padding-left: 40px; }
+
+    .service-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .service-name {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+
+    .service-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── Journal ──────────────────────────────────────── */
+    .journal-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .journal-item {
+      display: flex;
+      align-items: baseline;
+      gap: 40px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .journal-item:hover { padding-left: 8px; }
+
+    .journal-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      min-width: 90px;
+      letter-spacing: 0.06em;
+    }
+
+    .journal-title {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+
+    .journal-item:hover .journal-title { color: var(--fg); }
+
+    .journal-cat {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .journal-arrow {
+      color: var(--muted);
+      font-size: 14px;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .journal-item:hover .journal-arrow {
+      transform: translateX(6px);
+      color: var(--fg);
+    }
+
+    /* ─── Contact ──────────────────────────────────────── */
+    #contact {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-cta {
+      font-size: clamp(32px, 5vw, 72px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      max-width: 700px;
+      margin-bottom: 60px;
+    }
+
+    .contact-cta em {
+      font-style: normal;
+      color: var(--muted);
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .contact-email {
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-email:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .social-link {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .social-link:hover { color: var(--fg); }
+
+    /* ─── Footer ───────────────────────────────────────── */
+    footer {
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .footer-right a {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover { color: var(--fg); }
+
+    /* ─── Cursor Dot ────────────────────────────────────── */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 6px; height: 6px;
+      background: var(--fg);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+      mix-blend-mode: difference;
+    }
+
+    .cursor.expand {
+      width: 40px;
+      height: 40px;
+    }
+
+    /* ─── Fade-in animation ─────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Responsive ────────────────────────────────────── */
+    .work-item--featured { grid-column: span 2; aspect-ratio: 16/7; }
+    @media (max-width: 900px) { .work-item--featured { grid-column: span 1; aspect-ratio: 4/3; } }
+
+    @media (max-width: 900px) {
+      header { padding: 18px 24px; }
+      section { padding: 72px 24px; }
+
+      /* Hero mobile: foto como background, texto por cima */
+      #hero {
+        height: auto;
+        min-height: 100svh;
+        padding: 0 24px 120px;
+        justify-content: flex-end;
+        overflow: hidden;
+      }
+
+      #hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 40%, rgba(1,1,0,0.7) 65%, #010100 88%);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-photo {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        z-index: 0;
+      }
+
+      .hero-photo img {
+        object-fit: contain;
+        object-position: center top;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding-top: 20px;
+      }
+
+      .hero-eyebrow {
+        padding-top: 0;
+        margin-bottom: 20px;
+      }
+      .container { padding: 0 24px; }
+
+      .work-grid { grid-template-columns: 1fr; }
+      .work-item:first-child { grid-column: span 1; aspect-ratio: 4/3; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .services-list { grid-template-columns: 1fr; }
+      .service-item { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; }
+      .service-item:not(:first-child) { padding-left: 0; }
+
+      .hero-meta { flex-direction: column; align-items: flex-start; }
+      .contact-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+      footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+      nav { gap: 20px; }
+      .timestamp { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+
+  <!-- ─── Header ──────────────────────────────────────── -->
+  <header>
+    <a href="#hero" class="logo">OCTOGUSS <span>—</span></a>
+    <nav>
+      <a href="#about">Info</a>
+      <a href="#work">Work</a>
+<a href="#contact">Contact</a>
+    </nav>
+    <div class="timestamp" id="clock">00:00:00</div>
+  </header>
+
+  <!-- ─── Hero ────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-photo">
+      <img id="hero-photo" src="assets/hero-photo.jpg" alt="Octoguss" />
+    </div>
+    <div class="hero-content">
+    <p class="hero-eyebrow" id="hero-eyebrow">Available for new projects · 2026</p>
+    <h1 class="hero-headline" id="hero-headline">
+      Crafting digital<br>
+      <em>experiences &amp; identities</em><br>
+      that endure.
+    </h1>
+    <div class="hero-meta">
+      <p class="hero-desc" id="hero-desc">
+        Independent creative developer &amp; designer building refined digital products, brand identities, and interactive experiences for visionary clients worldwide.
+      </p>
+      <a href="#work" class="hero-scroll">
+        <span class="scroll-line"></span>
+        <span id="hero-cta-text">View Work</span>
+      </a>
+    </div>
+
+    <!-- Marquee -->
+    </div><!-- /.hero-content -->
+  </section>
+
+  <!-- ─── Work ─────────────────────────────────────────── -->
+  <section id="work">
+    <div class="section-header fade-up">
+      <div>
+        <p class="section-label">Selected Work — 2023–2026</p>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <a href="#work" class="section-link">
+        All work
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="work-grid fade-up" id="work-grid"></div>
+  </section>
+
+  <!-- ─── About ─────────────────────────────────────────── -->
+  <section id="about">
+    <div class="section-header fade-up">
+      <div>
+        <p class="section-label">About</p>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text fade-up" id="about-text"></div>
+      <div class="about-stats fade-up" id="about-stats"></div>
+    </div>
+  </section>
+
+  <!-- ─── Services ─────────────────────────────────────── -->
+  <section id="services">
+    <div class="section-header fade-up">
+      <div>
+        <p class="section-label">Capabilities</p>
+        <h2 class="section-title">What I do</h2>
+      </div>
+    </div>
+
+    <div class="services-list fade-up" id="services-list"></div>
+  </section>
+
+
+  <!-- ─── Contact ───────────────────────────────────────── -->
+  <section id="contact">
+    <p class="section-label fade-up" id="contact-label" style="margin-bottom:40px;">Let's work together</p>
+    <h2 class="contact-cta fade-up" id="contact-headline">
+      Have a project in mind?<br>
+      <em>Let's make something</em><br>
+      remarkable.
+    </h2>
+    <div class="contact-row fade-up">
+      <a href="mailto:hello@octoguss.com" class="contact-email" id="contact-email">hello@octoguss.com</a>
+      <div class="social-links" id="contact-socials">
+        <a href="#" class="social-link">GitHub</a>
+        <a href="#" class="social-link">Dribbble</a>
+        <a href="#" class="social-link">LinkedIn</a>
+        <a href="#" class="social-link">Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ────────────────────────────────────────── -->
+  <footer>
+    <p class="footer-copy" id="footer-copy">© 2026 Octoguss. All rights reserved.</p>
+    <div class="footer-right">
+      <a href="#">Privacy</a>
+      <a href="#">Colophon</a>
+      <span style="color:var(--muted);font-size:11px;letter-spacing:0.06em;">Designed &amp; built by Octoguss</span>
+    </div>
+  </footer>
+
+  <!-- ─── Scripts ───────────────────────────────────────── -->
+  <script>
+    // ── Content Loader ───────────────────────────────────
+    async function loadContent() {
+      try {
+        const res = await fetch('content.json?t=' + Date.now());
+        if (!res.ok) return;
+        const d = await res.json();
+
+        // Hero
+        if (d.hero) {
+          const h = d.hero;
+          const eyebrow = document.getElementById('hero-eyebrow');
+          if (eyebrow) eyebrow.textContent = h.eyebrow;
+
+          const headline = document.getElementById('hero-headline');
+          if (headline && h.headline) {
+            headline.innerHTML = h.headline.map((line, i) =>
+              h.headlineEm && h.headlineEm[i] ? `<em>${line}</em>` : line
+            ).join('<br>');
+          }
+
+          const desc = document.getElementById('hero-desc');
+          if (desc) desc.textContent = h.description;
+
+          const ctaText = document.getElementById('hero-cta-text');
+          if (ctaText) ctaText.textContent = h.cta;
+
+          const photo = document.getElementById('hero-photo');
+          if (photo && h.photo) photo.src = h.photo;
+        }
+
+        // Work
+        if (d.work) {
+          const grid = document.getElementById('work-grid');
+          if (grid) {
+            grid.innerHTML = d.work.map(p => `
+              <div class="work-item${p.featured ? ' work-item--featured' : ''}" onclick="if('${p.link}'!=='#')window.open('${p.link}','_blank')">
+                ${p.image
+                  ? `<img class="work-thumb" src="${p.image}" alt="${p.name}">`
+                  : `<div class="work-thumb-placeholder" style="background:${p.gradient || '#1a1a2e'};"></div>`
+                }
+                <div class="work-overlay">
+                  <span class="work-name">${p.name}</span>
+                  <div class="work-tags">${(p.tags||[]).map(t=>`<span class="work-tag">${t}</span>`).join('')}</div>
+                </div>
+              </div>
+            `).join('');
+          }
+        }
+
+        // About
+        if (d.about) {
+          const aboutText = document.getElementById('about-text');
+          if (aboutText && d.about.bio) {
+            aboutText.innerHTML = d.about.bio.map(p => `<p>${p}</p>`).join('') +
+              `<div class="skills-list">${(d.about.skills||[]).map(s=>`<span class="skill-chip">${s}</span>`).join('')}</div>`;
+          }
+
+          const aboutStats = document.getElementById('about-stats');
+          if (aboutStats && d.about.stats) {
+            aboutStats.innerHTML = d.about.stats.map(s => `
+              <div class="stat">
+                <div class="stat-number">${s.number}</div>
+                <div class="stat-label">${s.label}</div>
+              </div>
+            `).join('');
+          }
+        }
+
+        // Services
+        if (d.services) {
+          const servicesList = document.getElementById('services-list');
+          if (servicesList) {
+            servicesList.innerHTML = d.services.map(s => `
+              <div class="service-item">
+                <div class="service-num">${s.num}</div>
+                <div class="service-name">${s.name}</div>
+                <p class="service-desc">${s.desc}</p>
+              </div>
+            `).join('');
+          }
+        }
+
+        // Contact
+        if (d.contact) {
+          const c = d.contact;
+          const label = document.getElementById('contact-label');
+          if (label) label.textContent = c.label;
+
+          const headline = document.getElementById('contact-headline');
+          if (headline && c.headline) {
+            headline.innerHTML = c.headline.map((line, i) =>
+              c.headlineEm && c.headlineEm[i] ? `<em>${line}</em>` : line
+            ).join('<br>');
+          }
+
+          const email = document.getElementById('contact-email');
+          if (email) { email.textContent = c.email; email.href = 'mailto:' + c.email; }
+
+          const socials = document.getElementById('contact-socials');
+          if (socials && c.socials) {
+            socials.innerHTML = c.socials.map(s =>
+              `<a href="${s.url}" class="social-link" ${s.url !== '#' ? 'target="_blank"' : ''}>${s.label}</a>`
+            ).join('');
+          }
+        }
+
+        // Footer
+        if (d.footer) {
+          const copy = document.getElementById('footer-copy');
+          if (copy) copy.textContent = d.footer.copy;
+        }
+
+      } catch(e) {
+        console.warn('Could not load content.json:', e);
+      }
+    }
+
+    loadContent();
+
+    // Live clock
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    let mouseX = 0, mouseY = 0;
+    let curX = 0, curY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      curX += (mouseX - curX) * 0.15;
+      curY += (mouseY - curY) * 0.15;
+      cursor.style.left = curX + 'px';
+      cursor.style.top  = curY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Cursor expand on interactive elements
+    const interactives = document.querySelectorAll('a, button, .work-item, .journal-item');
+    interactives.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+
+    // Intersection observer for fade-up
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Stagger fade-up children
+    document.querySelectorAll('.work-grid, .about-stats, .services-list, .journal-list').forEach(parent => {
+      Array.from(parent.children).forEach((child, i) => {
+        child.style.transitionDelay = `${i * 80}ms`;
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:id-c.se)",
+      "Bash(claude mcp:*)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/octoguss/.local/bin/**)",
+      "Bash(npx claude:*)",
+      "mcp__figma__get_design_context",
+      "Bash(ls /Users/octoguss/Documents/octoguss/Claude-code/admin*)",
+      "Bash(ls /Users/octoguss/Documents/octoguss/Claude-code/*.js)",
+      "Bash(ls /Users/octoguss/Documents/octoguss/Claude-code/*.json)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(git init:*)",
+      "Bash(git remote:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "figma"
+  ]
+}

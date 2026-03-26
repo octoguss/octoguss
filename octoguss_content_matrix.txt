@@ -1,0 +1,173 @@
+OCTOGUSS — PORTFOLIO WEBSITE
+CONTENT MATRIX v1.0
+Last updated: 2026-03-20
+─────────────────────────────────────────────────────────────────────────────
+
+INSTRUCTIONS FOR REVIEW
+- Review each section below and edit the [PLACEHOLDER] copy directly in this file.
+- Add comments or notes using a >> prefix on a new line.
+- Return the file when ready for implementation.
+
+─────────────────────────────────────────────────────────────────────────────
+SECTION 1 — NAVIGATION / HEADER
+─────────────────────────────────────────────────────────────────────────────
+
+  Logo / Brand Name:        octoguss
+  Nav Item 1:               Work
+  Nav Item 2:               About
+  Nav Item 3:               Journal
+  Nav Item 4:               Archive
+  Live Clock Label:         [PLACEHOLDER — e.g. city/timezone to display]
+
+─────────────────────────────────────────────────────────────────────────────
+SECTION 2 — HERO / INTRODUCTION
+─────────────────────────────────────────────────────────────────────────────
+
+  Tagline / Bio Paragraph:
+  "[PLACEHOLDER — A short, punchy description of who you are, what you do,
+  and which brands/clients you've worked with. Example format:
+  'Independent designer [Your Name] specializing in [disciplines] for
+  [type of brands] globally [i.e. Brand A, Brand B, Brand C].']"
+
+─────────────────────────────────────────────────────────────────────────────
+SECTION 3 — SELECTED WORK / PORTFOLIO GRID
+─────────────────────────────────────────────────────────────────────────────
+
+  Section Label:            Selected Work
+  Grid Interaction Label:   View Project
+  Filter Labels (optional): All / Branding / Digital / Packaging / Motion
+
+  --- PROJECT ENTRIES ---
+  List your projects below. Each entry has: Title, Category, Year, Slug.
+
+  Project 01:
+    Title:    [PLACEHOLDER — Project Name]
+    Client:   [PLACEHOLDER — Client or Brand]
+    Category: [PLACEHOLDER — e.g. Brand Identity]
+    Year:     [PLACEHOLDER — e.g. 2025]
+
+  Project 02:
+    Title:    [PLACEHOLDER — Project Name]
+    Client:   [PLACEHOLDER — Client or Brand]
+    Category: [PLACEHOLDER — e.g. Digital Design]
+    Year:     [PLACEHOLDER — e.g. 2025]
+
+  Project 03:
+    Title:    [PLACEHOLDER — Project Name]
+    Client:   [PLACEHOLDER — Client or Brand]
+    Category: [PLACEHOLDER — e.g. Packaging]
+    Year:     [PLACEHOLDER — e.g. 2024]
+
+  Project 04:
+    Title:    [PLACEHOLDER — Project Name]
+    Client:   [PLACEHOLDER — Client or Brand]
+    Category: [PLACEHOLDER — e.g. Website]
+    Year:     [PLACEHOLDER — e.g. 2024]
+
+  Project 05:
+    Title:    [PLACEHOLDER — Project Name]
+    Client:   [PLACEHOLDER — Client or Brand]
+    Category: [PLACEHOLDER — e.g. Motion]
+    Year:     [PLACEHOLDER — e.g. 2024]
+
+  Project 06:
+    Title:    [PLACEHOLDER — Project Name]
+    Client:   [PLACEHOLDER — Client or Brand]
+    Category: [PLACEHOLDER — e.g. Brand Identity]
+    Year:     [PLACEHOLDER — e.g. 2023]
+
+  >> Add more project rows as needed.
+
+─────────────────────────────────────────────────────────────────────────────
+SECTION 4 — ABOUT / INFORMATION
+─────────────────────────────────────────────────────────────────────────────
+
+  Page Title:               About / Information
+
+  Paragraph 1 — Who:
+  "[PLACEHOLDER — Introduce yourself. Who are you, where are you based,
+  what kind of work do you do?]"
+
+  Paragraph 2 — What:
+  "[PLACEHOLDER — Describe your approach, process, or design philosophy.]"
+
+  Paragraph 3 — Clients / Experience:
+  "[PLACEHOLDER — Mention notable clients, industries, or collaborations.]"
+
+  Services List:
+    - [PLACEHOLDER — e.g. Brand Identity]
+    - [PLACEHOLDER — e.g. Art Direction]
+    - [PLACEHOLDER — e.g. Digital Design]
+    - [PLACEHOLDER — e.g. Packaging]
+    - [PLACEHOLDER — e.g. Motion & Animation]
+
+  Availability Status:
+  "[PLACEHOLDER — e.g. 'Available for new projects from [Month Year]']"
+
+─────────────────────────────────────────────────────────────────────────────
+SECTION 5 — JOURNAL
+─────────────────────────────────────────────────────────────────────────────
+
+  Section Label:            Journal
+  Intro Line (optional):    "[PLACEHOLDER — e.g. 'Updates, features, and news.']"
+
+  --- JOURNAL ENTRIES ---
+
+  Entry 01:
+    Headline: [PLACEHOLDER — e.g. 'Project X featured in Awwwards']
+    Date:     [PLACEHOLDER — e.g. March 2026]
+    Body:     [PLACEHOLDER — Short paragraph or teaser text.]
+
+  Entry 02:
+    Headline: [PLACEHOLDER]
+    Date:     [PLACEHOLDER]
+    Body:     [PLACEHOLDER]
+
+  Entry 03:
+    Headline: [PLACEHOLDER]
+    Date:     [PLACEHOLDER]
+    Body:     [PLACEHOLDER]
+
+─────────────────────────────────────────────────────────────────────────────
+SECTION 6 — ARCHIVE
+─────────────────────────────────────────────────────────────────────────────
+
+  Section Label:            Archive
+  Intro Line (optional):    "[PLACEHOLDER — e.g. 'A look back at past work and experiments.']"
+
+  >> List archived or older projects here using the same format as Section 3.
+
+─────────────────────────────────────────────────────────────────────────────
+SECTION 7 — FOOTER
+─────────────────────────────────────────────────────────────────────────────
+
+  Brand Name:               octoguss
+  Copyright Line:           © octoguss [PLACEHOLDER — Year]
+
+  Contact Email:            [PLACEHOLDER — your@email.com]
+
+  Social Links:
+    - LinkedIn:             [PLACEHOLDER — URL or handle]
+    - Instagram:            [PLACEHOLDER — URL or handle]
+    - Behance:              [PLACEHOLDER — URL or handle]
+    - Twitter / X:          [PLACEHOLDER — URL or handle]
+
+  Credits:
+    - Development:          [PLACEHOLDER — e.g. octoguss / your dev name]
+    - Hosting:              [PLACEHOLDER — e.g. Vercel / Netlify]
+    - Photography:          [PLACEHOLDER — photographer credit if applicable]
+
+  Press Kit:                [PLACEHOLDER — include a downloadable press kit? Y/N]
+
+─────────────────────────────────────────────────────────────────────────────
+SECTION 8 — SEO / META (behind the scenes)
+─────────────────────────────────────────────────────────────────────────────
+
+  Site Title:               octoguss — [PLACEHOLDER — short descriptor]
+  Meta Description:         "[PLACEHOLDER — 1–2 sentence SEO description of the portfolio]"
+  OG Image Alt Text:        [PLACEHOLDER — description of the social share image]
+  Keywords (optional):      [PLACEHOLDER — e.g. designer, brand identity, digital design]
+
+─────────────────────────────────────────────────────────────────────────────
+END OF CONTENT MATRIX
+─────────────────────────────────────────────────────────────────────────────
