@@ -132,6 +132,7 @@
       width: 53.5%;  /* 1024px / 1916px canvas */
       height: 1536px;
       pointer-events: none;
+      z-index: 0;
     }
 
     .hero-photo img {
@@ -156,7 +157,7 @@
       font-weight: 300;
       line-height: 1.05;
       letter-spacing: -0.02em;
-      max-width: 900px;
+      max-width: 55%;
       margin-bottom: 48px;
     }
 
@@ -709,7 +710,7 @@
     <div class="hero-photo">
       <img id="hero-photo" src="assets/hero-photo.jpg" alt="Octoguss" />
     </div>
-    <div class="hero-content">
+    <div class="hero-content" style="position:relative;z-index:1;">
     <p class="hero-eyebrow" id="hero-eyebrow">Available for new projects · 2026</p>
     <h1 class="hero-headline" id="hero-headline">
       Crafting digital<br>
