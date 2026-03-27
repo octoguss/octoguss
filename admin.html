@@ -609,6 +609,291 @@
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
     }
+
+    /* ── Works Panel ──────────────────────────────── */
+    .works-layout {
+      display: flex;
+      gap: 0;
+      min-height: 600px;
+    }
+
+    .works-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      margin-right: 32px;
+      padding-right: 0;
+    }
+
+    .works-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    .works-sidebar-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .works-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .works-list-item {
+      padding: 9px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: var(--radius);
+      border-left: 2px solid transparent;
+      transition: background 0.15s, color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+    }
+
+    .works-list-item:hover { background: var(--accent-dim); color: var(--fg); }
+
+    .works-list-item.active {
+      background: var(--accent-dim);
+      color: var(--fg);
+      border-left-color: var(--fg);
+    }
+
+    .works-list-item-id {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--muted-2);
+      flex-shrink: 0;
+    }
+
+    .works-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .works-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      border: 1px dashed var(--border-2);
+      border-radius: var(--radius);
+    }
+
+    .works-form-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .works-form-title {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .works-form-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* ── Blocks Editor ────────────────────────────── */
+    .blocks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .block-item {
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      background: var(--bg-2);
+      overflow: hidden;
+    }
+
+    .block-item.drag-over {
+      border-color: var(--muted);
+      background: var(--accent-dim);
+    }
+
+    .block-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+
+    .block-header:hover { background: var(--accent-dim); }
+
+    .block-drag-handle {
+      color: var(--muted-2);
+      cursor: grab;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .block-drag-handle:active { cursor: grabbing; }
+
+    .block-type-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--bg-3);
+      border: 1px solid var(--border-2);
+      padding: 2px 7px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .block-preview {
+      font-size: 12px;
+      color: var(--muted);
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .block-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .block-body {
+      padding: 14px;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+
+    .block-body.open { display: block; }
+
+    /* Type picker modal */
+    .type-picker-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .type-picker-overlay.hidden { display: none; }
+
+    .type-picker {
+      background: var(--bg-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      padding: 24px;
+      width: 340px;
+    }
+
+    .type-picker-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .type-picker-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .type-picker-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .type-picker-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .type-picker-option:hover {
+      background: var(--accent-dim);
+      border-color: var(--muted-2);
+    }
+
+    .type-picker-option-name {
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+
+    .type-picker-option-desc {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .type-picker-cancel {
+      margin-top: 14px;
+      width: 100%;
+    }
+
+    /* Info note banner */
+    .info-note {
+      background: rgba(232,230,225,0.04);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      margin-bottom: 28px;
+    }
+
+    .info-note a {
+      color: var(--fg);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Two-col image-half layout in block editor */
+    .half-img-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .half-img-row > div { flex: 1; }
   </style>
 </head>
 <body>
@@ -658,6 +943,10 @@
       <div class="nav-item" data-panel="work">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.2"/></svg>
         Work
+      </div>
+      <div class="nav-item" data-panel="works">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><path d="M2 2h12a1 1 0 011 1v10a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2"/><path d="M1 6h14M5 2v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Works
       </div>
       <div class="nav-item" data-panel="about">
         <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -747,6 +1036,10 @@
       <h1 class="panel-title">Work</h1>
       <p class="panel-subtitle">Manage your portfolio projects. The first "Featured" project spans full width.</p>
 
+      <div class="info-note">
+        These are the portfolio thumbnails shown on the homepage. To edit the full case study content of each project, use the <a onclick="document.querySelector('[data-panel=works]').click()">Works tab</a>.
+      </div>
+
       <div class="work-cards" id="work-cards"></div>
 
       <div style="margin-top:20px;">
@@ -754,6 +1047,36 @@
           <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
           Add Project
         </button>
+      </div>
+    </div>
+
+    <!-- ── WORKS (case studies) ───────────────────── -->
+    <div class="panel" id="panel-works">
+      <h1 class="panel-title">Works</h1>
+      <p class="panel-subtitle">Edit full case study pages. Each work saves to <code style="font-family:var(--font-mono);font-size:10px;background:var(--bg-3);padding:1px 5px;border-radius:2px;">works/{id}.json</code> on GitHub.</p>
+
+      <div class="works-layout">
+        <!-- Left: work selector -->
+        <div class="works-sidebar">
+          <div class="works-sidebar-header">
+            <span class="works-sidebar-label">Case Studies</span>
+            <button class="btn btn-small" id="btn-new-work">
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              New
+            </button>
+          </div>
+          <div class="works-list" id="works-list">
+            <!-- rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Right: form area -->
+        <div class="works-main" id="works-main">
+          <div class="works-empty" id="works-empty">Select a work to edit</div>
+          <div id="works-form-area" style="display:none;">
+            <!-- rendered by JS -->
+          </div>
+        </div>
       </div>
     </div>
 
@@ -958,6 +1281,47 @@
 <!-- Toast container -->
 <div id="toast-container"></div>
 
+<!-- Type Picker Modal -->
+<div class="type-picker-overlay hidden" id="type-picker-overlay">
+  <div class="type-picker">
+    <p class="type-picker-title">Add Block</p>
+    <p class="type-picker-sub">Choose a content block type to insert.</p>
+    <div class="type-picker-options">
+      <div class="type-picker-option" data-type="text">
+        <div>
+          <div class="type-picker-option-name">text</div>
+          <div class="type-picker-option-desc">Heading + body paragraph</div>
+        </div>
+      </div>
+      <div class="type-picker-option" data-type="image-full">
+        <div>
+          <div class="type-picker-option-name">image-full</div>
+          <div class="type-picker-option-desc">Full-width image with optional gradient fallback</div>
+        </div>
+      </div>
+      <div class="type-picker-option" data-type="image-half">
+        <div>
+          <div class="type-picker-option-name">image-half</div>
+          <div class="type-picker-option-desc">Two side-by-side images</div>
+        </div>
+      </div>
+      <div class="type-picker-option" data-type="image-text">
+        <div>
+          <div class="type-picker-option-name">image-text</div>
+          <div class="type-picker-option-desc">Image alongside heading and text</div>
+        </div>
+      </div>
+      <div class="type-picker-option" data-type="quote">
+        <div>
+          <div class="type-picker-option-name">quote</div>
+          <div class="type-picker-option-desc">Pull quote with optional author attribution</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-full type-picker-cancel" id="type-picker-cancel">Cancel</button>
+  </div>
+</div>
+
 <script>
 /* ═══════════════════════════════════════════════
    CONSTANTS & STATE
@@ -969,8 +1333,13 @@ const LS_GH_REPO       = 'oc_gh_repo';
 const LS_GH_BRANCH     = 'oc_gh_branch';
 const LS_GH_PATH       = 'oc_gh_path';
 
-let workData = [];     // array of project objects
-let nextId   = 100;    // id counter for new projects
+let workData     = [];     // array of project objects (content.json work array)
+let nextId       = 100;    // id counter for new projects
+
+// Works (case studies) state
+let worksData    = {};     // { [id]: workObject } loaded from works/N.json
+let selectedWorkId = null; // currently selected work id
+let worksNextId  = 1;      // counter for new work ids
 
 /* ═══════════════════════════════════════════════
    LOCK SCREEN
@@ -1225,8 +1594,13 @@ function populateForms(d) {
   // Work
   if (d.work) {
     workData = d.work.map(p => ({ ...p }));
-    nextId = Math.max(...workData.map(p => p.id || 0)) + 1;
+    nextId = Math.max(nextId, ...workData.map(p => p.id || 0)) + 1;
     renderWorkCards();
+    // Also try to load each work's case study file
+    workData.forEach(p => {
+      if (p.id) loadWorkFile(p.id);
+    });
+    renderWorksList();
   }
 
   // About
@@ -1286,6 +1660,7 @@ async function loadContent() {
       { num: '02', name: 'Web & Digital', desc: '' },
       { num: '03', name: 'Motion & Experience', desc: '' }
     ]);
+    renderWorksList();
     toast('Could not load content.json — starting fresh', '');
   }
 
@@ -1355,20 +1730,112 @@ document.getElementById('btn-download').addEventListener('click', () => {
 });
 
 /* ═══════════════════════════════════════════════
-   SAVE TO GITHUB
+   GITHUB API HELPER
+═══════════════════════════════════════════════ */
+async function githubPut(path, contentObj, commitMessage) {
+  const token  = v('gh-token')  || localStorage.getItem(LS_GH_TOKEN);
+  const repo   = v('gh-repo')   || localStorage.getItem(LS_GH_REPO);
+  const branch = v('gh-branch') || localStorage.getItem(LS_GH_BRANCH) || 'main';
+
+  if (!token || !repo) {
+    throw new Error('GitHub token and repository are required. Configure them in Settings.');
+  }
+
+  const jsonStr = JSON.stringify(contentObj, null, 2);
+  const content = btoa(unescape(encodeURIComponent(jsonStr)));
+
+  // GET current file SHA
+  const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json'
+    }
+  });
+
+  let sha = undefined;
+  if (getRes.ok) {
+    const fileData = await getRes.json();
+    sha = fileData.sha;
+  } else if (getRes.status !== 404) {
+    const err = await getRes.json();
+    throw new Error(err.message || `GET failed: ${getRes.status}`);
+  }
+
+  const body = { message: commitMessage, content, branch };
+  if (sha) body.sha = sha;
+
+  const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!putRes.ok) {
+    const err = await putRes.json();
+    throw new Error(err.message || `PUT failed: ${putRes.status}`);
+  }
+}
+
+async function githubDelete(path, commitMessage) {
+  const token  = v('gh-token')  || localStorage.getItem(LS_GH_TOKEN);
+  const repo   = v('gh-repo')   || localStorage.getItem(LS_GH_REPO);
+  const branch = v('gh-branch') || localStorage.getItem(LS_GH_BRANCH) || 'main';
+
+  if (!token || !repo) {
+    throw new Error('GitHub token and repository are required. Configure them in Settings.');
+  }
+
+  // GET SHA first
+  const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json'
+    }
+  });
+
+  if (!getRes.ok) {
+    if (getRes.status === 404) return; // file doesn't exist, nothing to delete
+    const err = await getRes.json();
+    throw new Error(err.message || `GET failed: ${getRes.status}`);
+  }
+
+  const fileData = await getRes.json();
+  const sha = fileData.sha;
+
+  const delRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message: commitMessage, sha, branch })
+  });
+
+  if (!delRes.ok) {
+    const err = await delRes.json();
+    throw new Error(err.message || `DELETE failed: ${delRes.status}`);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SAVE TO GITHUB (content.json)
 ═══════════════════════════════════════════════ */
 document.getElementById('btn-github').addEventListener('click', async () => {
   const token  = v('gh-token')  || localStorage.getItem(LS_GH_TOKEN);
   const repo   = v('gh-repo')   || localStorage.getItem(LS_GH_REPO);
-  const branch = v('gh-branch') || localStorage.getItem(LS_GH_BRANCH) || 'main';
-  const path   = v('gh-path')   || localStorage.getItem(LS_GH_PATH)   || 'content.json';
 
   if (!token || !repo) {
     toast('Please configure GitHub Token and Repository in Settings.', 'error');
-    // Switch to settings
     document.querySelector('[data-panel="settings"]').click();
     return;
   }
+
+  const path   = v('gh-path')   || localStorage.getItem(LS_GH_PATH)   || 'content.json';
 
   const btn = document.getElementById('btn-github');
   const originalHTML = btn.innerHTML;
@@ -1377,48 +1844,7 @@ document.getElementById('btn-github').addEventListener('click', async () => {
 
   try {
     const data = collectData();
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-
-    // GET current file SHA
-    const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github+json'
-      }
-    });
-
-    let sha = undefined;
-    if (getRes.ok) {
-      const fileData = await getRes.json();
-      sha = fileData.sha;
-    } else if (getRes.status !== 404) {
-      const err = await getRes.json();
-      throw new Error(err.message || `GET failed: ${getRes.status}`);
-    }
-
-    // PUT updated file
-    const body = {
-      message: 'Update content via admin panel',
-      content: content,
-      branch: branch
-    };
-    if (sha) body.sha = sha;
-
-    const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-
-    if (!putRes.ok) {
-      const err = await putRes.json();
-      throw new Error(err.message || `PUT failed: ${putRes.status}`);
-    }
-
+    await githubPut(path, data, 'Update content via admin panel');
     toast('Saved to GitHub successfully!', 'success');
   } catch (err) {
     toast('GitHub error: ' + err.message, 'error');
@@ -1484,6 +1910,638 @@ document.getElementById('btn-change-pw').addEventListener('click', () => {
   document.getElementById('pw-confirm').value = '';
   toast('Password updated successfully.', 'success');
 });
+
+/* ═══════════════════════════════════════════════
+   WORKS — LOAD A SINGLE WORK FILE
+═══════════════════════════════════════════════ */
+async function loadWorkFile(id) {
+  try {
+    const res = await fetch(`./works/${id}.json?t=` + Date.now());
+    if (!res.ok) return;
+    const d = await res.json();
+    worksData[id] = d;
+  } catch (e) {
+    // silently ignore — file may not exist yet
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   WORKS — RENDER SIDEBAR LIST
+═══════════════════════════════════════════════ */
+function renderWorksList() {
+  const list = document.getElementById('works-list');
+  list.innerHTML = '';
+
+  if (workData.length === 0) {
+    list.innerHTML = '<p style="font-size:11px;color:var(--muted-2);padding:8px 12px;">No works yet. Add projects in the Work tab first, or create a new one below.</p>';
+    return;
+  }
+
+  workData.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'works-list-item' + (selectedWorkId === p.id ? ' active' : '');
+    item.dataset.id = p.id;
+    item.innerHTML = `
+      <span class="works-list-item-id">${p.id}</span>
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escHtml(p.name || 'Untitled')}</span>
+    `;
+    item.addEventListener('click', () => selectWork(p.id));
+    list.appendChild(item);
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   WORKS — SELECT & RENDER FORM
+═══════════════════════════════════════════════ */
+function selectWork(id) {
+  selectedWorkId = id;
+
+  // Update sidebar highlight
+  document.querySelectorAll('.works-list-item').forEach(el => {
+    el.classList.toggle('active', Number(el.dataset.id) === id);
+  });
+
+  const emptyEl = document.getElementById('works-empty');
+  const formArea = document.getElementById('works-form-area');
+
+  // Get data — use cached or create empty
+  const workMeta = workData.find(p => p.id === id) || {};
+  const d = worksData[id] || {};
+
+  emptyEl.style.display = 'none';
+  formArea.style.display = 'block';
+
+  // Ensure blocks is always an array
+  if (!d.blocks) d.blocks = [];
+  worksData[id] = d;
+
+  renderWorksForm(id, workMeta, d);
+}
+
+/* ═══════════════════════════════════════════════
+   WORKS — RENDER FORM FOR SELECTED WORK
+═══════════════════════════════════════════════ */
+function renderWorksForm(id, meta, d) {
+  const formArea = document.getElementById('works-form-area');
+
+  const heroImageVal    = escHtml(d.hero?.image    || '');
+  const heroGradVal     = escHtml(d.hero?.gradient || '');
+  const heroIntroVal    = escHtml(d.hero?.intro    || '');
+  const overClientVal   = escHtml(d.overview?.client   || '');
+  const overYearVal     = escHtml(d.overview?.year     || '');
+  const overServicesVal = escHtml((d.overview?.services || []).join(', '));
+  const overLinkVal     = escHtml(d.overview?.link     || '');
+  const overDescVal     = escHtml(d.overview?.description || '');
+  const skillsVal       = escHtml((d.skills || []).join('\n'));
+  const moreWorksVal    = escHtml((d.moreWorks || []).join(', '));
+  const nameVal         = escHtml(meta.name || d.name || '');
+  const categoryVal     = escHtml(d.category || '');
+
+  formArea.innerHTML = `
+    <div class="works-form-header">
+      <span class="works-form-title">${escHtml(meta.name || d.name || 'Untitled Work')}</span>
+      <div class="works-form-actions">
+        <button class="btn btn-small btn-danger" id="btn-delete-work">Delete Work</button>
+        <button class="btn btn-small btn-primary" id="btn-save-work">
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2 2h9l3 3v9a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2"/><path d="M5 15V9h6v6M5 2v4h7V2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Save to GitHub
+        </button>
+      </div>
+    </div>
+
+    <!-- Basic Info -->
+    <p class="subsection-title" style="margin-top:0;">Basic Info</p>
+    <div class="input-row">
+      <div class="form-group">
+        <label class="form-label">ID</label>
+        <input type="text" value="${id}" disabled style="opacity:0.4;cursor:not-allowed;" />
+        <p class="form-hint">Auto-assigned. File saved as works/${id}.json</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input type="text" id="ws-name" value="${nameVal}" placeholder="Project Name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <input type="text" id="ws-category" value="${categoryVal}" placeholder="Brand, Web, Motion…" />
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Hero -->
+    <p class="subsection-title" style="margin-top:0;">Hero</p>
+    <div class="form-group">
+      <label class="form-label">Image Path</label>
+      <input type="text" id="ws-hero-image" value="${heroImageVal}" placeholder="works/assets/project-hero.jpg" />
+      <p class="form-hint">Leave blank to use gradient fallback.</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Gradient (fallback)</label>
+      <input type="text" id="ws-hero-gradient" value="${heroGradVal}" placeholder="linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)" />
+      <div class="gradient-preview" id="ws-hero-grad-preview" style="background:${d.hero?.gradient || '#1a1a2e'}"></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Intro Text</label>
+      <textarea id="ws-hero-intro" rows="3" placeholder="A short compelling intro about this project...">${heroIntroVal}</textarea>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Overview -->
+    <p class="subsection-title" style="margin-top:0;">Overview</p>
+    <div class="input-row">
+      <div class="form-group">
+        <label class="form-label">Client</label>
+        <input type="text" id="ws-client" value="${overClientVal}" placeholder="Client Name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Year</label>
+        <input type="text" id="ws-year" value="${overYearVal}" placeholder="2025" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Services (comma-separated)</label>
+      <input type="text" id="ws-services" value="${overServicesVal}" placeholder="Brand Identity, Web Design, Motion" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">External Link</label>
+      <input type="url" id="ws-link" value="${overLinkVal}" placeholder="https://projectsite.com" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <textarea id="ws-description" rows="4" placeholder="Overview paragraph about this project...">${overDescVal}</textarea>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Blocks -->
+    <p class="subsection-title" style="margin-top:0;">Content Blocks</p>
+    <div class="blocks-list" id="blocks-list"></div>
+    <button class="btn" id="btn-add-block">
+      <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      Add Block
+    </button>
+
+    <hr class="divider" />
+
+    <!-- Skills -->
+    <p class="subsection-title" style="margin-top:0;">Skills / Technologies</p>
+    <div class="form-group">
+      <label class="form-label">One per line</label>
+      <textarea id="ws-skills" rows="5" placeholder="React&#10;Figma&#10;CSS Animation">${skillsVal}</textarea>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- More Works -->
+    <p class="subsection-title" style="margin-top:0;">More Works</p>
+    <div class="form-group">
+      <label class="form-label">Related Work IDs (comma-separated)</label>
+      <input type="text" id="ws-more-works" value="${moreWorksVal}" placeholder="101, 102, 103" />
+      <p class="form-hint">IDs of other works to show in the "More Works" section.</p>
+    </div>
+  `;
+
+  // Live gradient preview
+  const gradIn = formArea.querySelector('#ws-hero-gradient');
+  const gradPr = formArea.querySelector('#ws-hero-grad-preview');
+  if (gradIn && gradPr) {
+    gradIn.addEventListener('input', () => { gradPr.style.background = gradIn.value; });
+  }
+
+  // Render blocks
+  renderBlocksList(id);
+
+  // Add Block button
+  formArea.querySelector('#btn-add-block').addEventListener('click', () => {
+    openTypePicker(id);
+  });
+
+  // Save button
+  formArea.querySelector('#btn-save-work').addEventListener('click', () => saveWork(id));
+
+  // Delete button
+  formArea.querySelector('#btn-delete-work').addEventListener('click', () => deleteWork(id));
+}
+
+/* ═══════════════════════════════════════════════
+   WORKS — COLLECT WORK FORM DATA
+═══════════════════════════════════════════════ */
+function collectWorkData(id) {
+  const d = worksData[id] || {};
+
+  return {
+    id,
+    name:     v('ws-name')     || (workData.find(p => p.id === id) || {}).name || '',
+    category: v('ws-category') || '',
+    hero: {
+      image:    v('ws-hero-image')    || null,
+      gradient: v('ws-hero-gradient') || '',
+      intro:    v('ws-hero-intro')    || ''
+    },
+    overview: {
+      client:      v('ws-client')      || '',
+      year:        v('ws-year')        || '',
+      services:    (v('ws-services') || '').split(',').map(s => s.trim()).filter(Boolean),
+      link:        v('ws-link')        || '',
+      description: v('ws-description') || ''
+    },
+    blocks:    (d.blocks || []).map(b => ({ ...b })),
+    skills:    (v('ws-skills') || '').split('\n').map(s => s.trim()).filter(Boolean),
+    moreWorks: (v('ws-more-works') || '').split(',').map(s => s.trim()).filter(Boolean).map(Number).filter(n => !isNaN(n))
+  };
+}
+
+/* ═══════════════════════════════════════════════
+   WORKS — SAVE WORK TO GITHUB
+═══════════════════════════════════════════════ */
+async function saveWork(id) {
+  const token = v('gh-token') || localStorage.getItem(LS_GH_TOKEN);
+  const repo  = v('gh-repo')  || localStorage.getItem(LS_GH_REPO);
+
+  if (!token || !repo) {
+    toast('Configure GitHub Token and Repository in Settings first.', 'error');
+    return;
+  }
+
+  const saveBtn = document.getElementById('btn-save-work');
+  const origHTML = saveBtn.innerHTML;
+  saveBtn.innerHTML = '<span class="spinner"></span> Saving…';
+  saveBtn.disabled = true;
+
+  try {
+    const data = collectWorkData(id);
+    // Cache locally
+    worksData[id] = data;
+    // Save to GitHub
+    await githubPut(`works/${id}.json`, data, `Update works/${id}.json via admin panel`);
+    toast(`works/${id}.json saved to GitHub!`, 'success');
+    // Update the sidebar title
+    renderWorksList();
+    // Refresh form header title
+    const header = document.querySelector('.works-form-title');
+    if (header) header.textContent = data.name || 'Untitled Work';
+  } catch (err) {
+    toast('GitHub error: ' + err.message, 'error');
+  } finally {
+    saveBtn.innerHTML = origHTML;
+    saveBtn.disabled = false;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   WORKS — DELETE WORK
+═══════════════════════════════════════════════ */
+async function deleteWork(id) {
+  if (!confirm(`Delete work ${id}? This will remove it from the work list and delete works/${id}.json from GitHub.`)) return;
+
+  const token = v('gh-token') || localStorage.getItem(LS_GH_TOKEN);
+  const repo  = v('gh-repo')  || localStorage.getItem(LS_GH_REPO);
+
+  // Remove from workData array
+  const idx = workData.findIndex(p => p.id === id);
+  if (idx !== -1) workData.splice(idx, 1);
+
+  // Remove from worksData cache
+  delete worksData[id];
+
+  // Reset UI
+  selectedWorkId = null;
+  renderWorkCards();
+  renderWorksList();
+  document.getElementById('works-empty').style.display = '';
+  document.getElementById('works-form-area').style.display = 'none';
+
+  if (!token || !repo) {
+    toast(`Work ${id} removed locally. GitHub not configured — delete works/${id}.json manually.`, '');
+    return;
+  }
+
+  try {
+    // Save updated content.json (without this work)
+    const contentData = collectData();
+    const path = v('gh-path') || localStorage.getItem(LS_GH_PATH) || 'content.json';
+    await githubPut(path, contentData, `Remove work ${id} via admin panel`);
+    // Delete the works/N.json file
+    await githubDelete(`works/${id}.json`, `Delete works/${id}.json via admin panel`);
+    toast(`Work ${id} deleted from GitHub.`, 'success');
+  } catch (err) {
+    toast('GitHub error: ' + err.message, 'error');
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   WORKS — NEW WORK BUTTON
+═══════════════════════════════════════════════ */
+document.getElementById('btn-new-work').addEventListener('click', () => {
+  const newId = nextId++;
+  const newWork = {
+    id: newId,
+    name: 'New Work',
+    tags: [],
+    image: null,
+    gradient: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+    featured: false,
+    link: `works/${newId}.html`
+  };
+  workData.push(newWork);
+  worksData[newId] = { id: newId, name: 'New Work', category: '', hero: {}, overview: {}, blocks: [], skills: [], moreWorks: [] };
+  renderWorkCards();
+  renderWorksList();
+  selectWork(newId);
+});
+
+/* ═══════════════════════════════════════════════
+   BLOCKS — RENDER BLOCKS LIST
+═══════════════════════════════════════════════ */
+function renderBlocksList(workId) {
+  const container = document.getElementById('blocks-list');
+  if (!container) return;
+  container.innerHTML = '';
+  const blocks = (worksData[workId] || {}).blocks || [];
+
+  blocks.forEach((block, idx) => {
+    const item = document.createElement('div');
+    item.className = 'block-item';
+    item.draggable = true;
+    item.dataset.idx = idx;
+
+    const preview = blockPreview(block);
+    item.innerHTML = `
+      <div class="block-header">
+        <span class="block-drag-handle" title="Drag to reorder">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="5" cy="4" r="1.2" fill="currentColor"/><circle cx="5" cy="8" r="1.2" fill="currentColor"/><circle cx="5" cy="12" r="1.2" fill="currentColor"/><circle cx="11" cy="4" r="1.2" fill="currentColor"/><circle cx="11" cy="8" r="1.2" fill="currentColor"/><circle cx="11" cy="12" r="1.2" fill="currentColor"/></svg>
+        </span>
+        <span class="block-type-badge">${escHtml(block.type)}</span>
+        <span class="block-preview">${escHtml(preview)}</span>
+        <div class="block-actions">
+          <button class="btn btn-small btn-danger block-delete-btn" data-idx="${idx}">Remove</button>
+        </div>
+      </div>
+      <div class="block-body" id="block-body-${workId}-${idx}">
+        ${blockFormHTML(block, workId, idx)}
+      </div>
+    `;
+
+    // Toggle
+    const header = item.querySelector('.block-header');
+    const body   = item.querySelector('.block-body');
+    header.addEventListener('click', e => {
+      if (e.target.closest('.block-delete-btn') || e.target.closest('.block-drag-handle')) return;
+      body.classList.toggle('open');
+    });
+
+    // Delete
+    item.querySelector('.block-delete-btn').addEventListener('click', () => {
+      worksData[workId].blocks.splice(idx, 1);
+      renderBlocksList(workId);
+    });
+
+    // Drag & drop
+    item.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', idx);
+      item.style.opacity = '0.4';
+    });
+    item.addEventListener('dragend', () => { item.style.opacity = '1'; });
+    item.addEventListener('dragover', e => {
+      e.preventDefault();
+      item.classList.add('drag-over');
+    });
+    item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+    item.addEventListener('drop', e => {
+      e.preventDefault();
+      item.classList.remove('drag-over');
+      const fromIdx = parseInt(e.dataTransfer.getData('text/plain'));
+      const toIdx   = idx;
+      if (fromIdx === toIdx) return;
+      // Save current form state before reorder
+      syncBlockFormToData(workId);
+      const blocks = worksData[workId].blocks;
+      const [moved] = blocks.splice(fromIdx, 1);
+      blocks.splice(toIdx, 0, moved);
+      renderBlocksList(workId);
+    });
+
+    // Live sync on any input change inside the block body
+    item.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('change', () => syncBlockFormToData(workId));
+    });
+
+    container.appendChild(item);
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   BLOCKS — PREVIEW TEXT
+═══════════════════════════════════════════════ */
+function blockPreview(block) {
+  switch (block.type) {
+    case 'text':        return block.heading || block.body || '';
+    case 'image-full':  return block.src || 'Image';
+    case 'image-half':  return (block.left?.src || '') + (block.right?.src ? ' / ' + block.right.src : '') || 'Two images';
+    case 'image-text':  return block.heading || block.src || '';
+    case 'quote':       return block.text ? '"' + block.text.slice(0, 60) + (block.text.length > 60 ? '…' : '') + '"' : '';
+    default:            return '';
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   BLOCKS — FORM HTML PER TYPE
+═══════════════════════════════════════════════ */
+function blockFormHTML(block, workId, idx) {
+  const pfx = `blk-${workId}-${idx}`;
+  switch (block.type) {
+    case 'text':
+      return `
+        <div class="form-group">
+          <label class="form-label">Heading</label>
+          <input type="text" id="${pfx}-heading" value="${escHtml(block.heading || '')}" placeholder="Section heading" />
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Body</label>
+          <textarea id="${pfx}-body" rows="4">${escHtml(block.body || '')}</textarea>
+        </div>`;
+
+    case 'image-full':
+      return `
+        <div class="form-group">
+          <label class="form-label">Image Src</label>
+          <input type="text" id="${pfx}-src" value="${escHtml(block.src || '')}" placeholder="works/assets/image.jpg" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alt Text</label>
+          <input type="text" id="${pfx}-alt" value="${escHtml(block.alt || '')}" placeholder="Descriptive alt text" />
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Gradient Fallback</label>
+          <input type="text" id="${pfx}-gradient" value="${escHtml(block.gradient || '')}" placeholder="linear-gradient(...)" />
+        </div>`;
+
+    case 'image-half':
+      return `
+        <div class="half-img-row">
+          <div>
+            <p class="form-label" style="margin-bottom:10px;">Left Image</p>
+            <div class="form-group">
+              <label class="form-label">Src</label>
+              <input type="text" id="${pfx}-left-src" value="${escHtml(block.left?.src || '')}" placeholder="works/assets/left.jpg" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Alt</label>
+              <input type="text" id="${pfx}-left-alt" value="${escHtml(block.left?.alt || '')}" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Gradient Fallback</label>
+              <input type="text" id="${pfx}-left-gradient" value="${escHtml(block.left?.gradient || '')}" />
+            </div>
+          </div>
+          <div>
+            <p class="form-label" style="margin-bottom:10px;">Right Image</p>
+            <div class="form-group">
+              <label class="form-label">Src</label>
+              <input type="text" id="${pfx}-right-src" value="${escHtml(block.right?.src || '')}" placeholder="works/assets/right.jpg" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Alt</label>
+              <input type="text" id="${pfx}-right-alt" value="${escHtml(block.right?.alt || '')}" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Gradient Fallback</label>
+              <input type="text" id="${pfx}-right-gradient" value="${escHtml(block.right?.gradient || '')}" />
+            </div>
+          </div>
+        </div>`;
+
+    case 'image-text':
+      return `
+        <div class="form-group">
+          <label class="form-label">Image Src</label>
+          <input type="text" id="${pfx}-src" value="${escHtml(block.src || '')}" placeholder="works/assets/image.jpg" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alt Text</label>
+          <input type="text" id="${pfx}-alt" value="${escHtml(block.alt || '')}" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gradient Fallback</label>
+          <input type="text" id="${pfx}-gradient" value="${escHtml(block.gradient || '')}" placeholder="linear-gradient(...)" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Heading</label>
+          <input type="text" id="${pfx}-heading" value="${escHtml(block.heading || '')}" placeholder="Section heading" />
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Body</label>
+          <textarea id="${pfx}-body" rows="4">${escHtml(block.body || '')}</textarea>
+        </div>`;
+
+    case 'quote':
+      return `
+        <div class="form-group">
+          <label class="form-label">Quote Text</label>
+          <textarea id="${pfx}-text" rows="3">${escHtml(block.text || '')}</textarea>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Author</label>
+          <input type="text" id="${pfx}-author" value="${escHtml(block.author || '')}" placeholder="— Jane Doe, CEO" />
+        </div>`;
+
+    default:
+      return `<p style="color:var(--muted);font-size:12px;">Unknown block type: ${escHtml(block.type)}</p>`;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   BLOCKS — SYNC FORM INPUTS → DATA
+═══════════════════════════════════════════════ */
+function syncBlockFormToData(workId) {
+  const blocks = (worksData[workId] || {}).blocks || [];
+  blocks.forEach((block, idx) => {
+    const pfx = `blk-${workId}-${idx}`;
+    const g = id => { const el = document.getElementById(id); return el ? el.value : ''; };
+
+    switch (block.type) {
+      case 'text':
+        block.heading = g(`${pfx}-heading`);
+        block.body    = g(`${pfx}-body`);
+        break;
+      case 'image-full':
+        block.src      = g(`${pfx}-src`);
+        block.alt      = g(`${pfx}-alt`);
+        block.gradient = g(`${pfx}-gradient`);
+        break;
+      case 'image-half':
+        block.left  = { src: g(`${pfx}-left-src`),  alt: g(`${pfx}-left-alt`),  gradient: g(`${pfx}-left-gradient`)  };
+        block.right = { src: g(`${pfx}-right-src`), alt: g(`${pfx}-right-alt`), gradient: g(`${pfx}-right-gradient`) };
+        break;
+      case 'image-text':
+        block.src      = g(`${pfx}-src`);
+        block.alt      = g(`${pfx}-alt`);
+        block.gradient = g(`${pfx}-gradient`);
+        block.heading  = g(`${pfx}-heading`);
+        block.body     = g(`${pfx}-body`);
+        break;
+      case 'quote':
+        block.text   = g(`${pfx}-text`);
+        block.author = g(`${pfx}-author`);
+        break;
+    }
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   TYPE PICKER MODAL
+═══════════════════════════════════════════════ */
+let _typePickerWorkId = null;
+
+function openTypePicker(workId) {
+  _typePickerWorkId = workId;
+  document.getElementById('type-picker-overlay').classList.remove('hidden');
+}
+
+document.getElementById('type-picker-cancel').addEventListener('click', () => {
+  document.getElementById('type-picker-overlay').classList.add('hidden');
+});
+
+document.getElementById('type-picker-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('type-picker-overlay')) {
+    document.getElementById('type-picker-overlay').classList.add('hidden');
+  }
+});
+
+document.querySelectorAll('.type-picker-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const type = opt.dataset.type;
+    const workId = _typePickerWorkId;
+    document.getElementById('type-picker-overlay').classList.add('hidden');
+
+    if (!worksData[workId]) worksData[workId] = { blocks: [] };
+    if (!worksData[workId].blocks) worksData[workId].blocks = [];
+
+    // Sync current form state before adding
+    syncBlockFormToData(workId);
+
+    const newBlock = makeEmptyBlock(type);
+    worksData[workId].blocks.push(newBlock);
+    renderBlocksList(workId);
+
+    // Auto-open the new block
+    const bodies = document.querySelectorAll('.block-body');
+    if (bodies.length) bodies[bodies.length - 1].classList.add('open');
+  });
+});
+
+function makeEmptyBlock(type) {
+  switch (type) {
+    case 'text':       return { type, heading: '', body: '' };
+    case 'image-full': return { type, src: '', alt: '', gradient: '' };
+    case 'image-half': return { type, left: { src: '', alt: '', gradient: '' }, right: { src: '', alt: '', gradient: '' } };
+    case 'image-text': return { type, src: '', alt: '', gradient: '', heading: '', body: '' };
+    case 'quote':      return { type, text: '', author: '' };
+    default:           return { type };
+  }
+}
 
 /* ═══════════════════════════════════════════════
    HELPERS
