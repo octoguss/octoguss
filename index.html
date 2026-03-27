@@ -849,7 +849,7 @@
           const grid = document.getElementById('work-grid');
           if (grid) {
             grid.innerHTML = d.work.map(p => `
-              <div class="work-item${p.featured ? ' work-item--featured' : ''}" onclick="if('${p.link}'!=='#')window.open('${p.link}','_blank')">
+              <div class="work-item${p.featured ? ' work-item--featured' : ''}" onclick="window.location.href='work.html?id=${p.id}'" style="cursor:pointer">
                 ${p.image
                   ? `<img class="work-thumb" src="${p.image}" alt="${p.name}">`
                   : `<div class="work-thumb-placeholder" style="background:${p.gradient || '#1a1a2e'};"></div>`

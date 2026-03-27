@@ -1,0 +1,65 @@
+{
+  "id": 1,
+  "name": "Void Studio — Brand Identity",
+  "category": "Branding & Identity",
+  "hero": {
+    "image": "",
+    "gradient": "linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)",
+    "intro": "A complete visual identity system for a forward-thinking creative studio."
+  },
+  "overview": {
+    "client": "Void Studio",
+    "year": "2025",
+    "services": ["Brand Identity", "Art Direction", "Print"],
+    "link": "#",
+    "description": "Void Studio needed a brand that could speak to both the precision of their process and the openness of their creative philosophy. The challenge was to distill an entire worldview into a single, enduring mark — something that would feel at home on a business card and on a billboard. We started by mapping the tension at the core of their work: structure versus intuition. From there, every decision — from the choice of typeface to the weight of a rule — was made to hold that tension without resolving it."
+  },
+  "blocks": [
+    {
+      "type": "text",
+      "heading": "The Challenge",
+      "body": "When Void Studio approached us, they had built a reputation for rigorous, concept-driven work — but their visual identity didn't reflect that. It was generic, forgettable, and at odds with the calibre of clients they were attracting. The brief was deceptively simple: create a brand that earns trust before a single word is read. That meant building a system robust enough to carry weight across every touchpoint, from pitch decks to packaging."
+    },
+    {
+      "type": "image-full",
+      "src": "",
+      "gradient": "linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%)",
+      "alt": "Brand overview — primary mark and wordmark lockup"
+    },
+    {
+      "type": "image-half",
+      "images": [
+        {
+          "src": "",
+          "gradient": "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
+          "alt": "Primary logomark — geometric construction"
+        },
+        {
+          "src": "",
+          "gradient": "linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%)",
+          "alt": "Typography system — display and body weights"
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "The mark needed to feel inevitable — like it had always existed.",
+      "author": "Creative Director"
+    },
+    {
+      "type": "text",
+      "heading": "The System",
+      "body": "We developed a comprehensive identity system anchored by a geometric primary mark and a restrained typographic hierarchy. The palette was reduced to three values: near-black, off-white, and a single structural accent. Every element in the system was designed to function independently and in concert — flexible enough for a wide range of applications, disciplined enough to remain coherent at any scale."
+    },
+    {
+      "type": "image-text",
+      "src": "",
+      "gradient": "linear-gradient(135deg, #16213e 0%, #0f3460 100%)",
+      "alt": "Brand in application — stationery and collateral",
+      "heading": "Identity in Use",
+      "body": "The real test of any identity is how it performs in the wild. We put the system through its paces across print collateral, environmental graphics, and digital touchpoints. The mark holds at 8mm and at 8 metres. The typographic system scales from a business card to a conference backdrop without compromise. This is what it means to build for longevity."
+    }
+  ],
+  "skills": ["Brand Identity", "Art Direction", "Typography", "Print Design", "Logo Design", "Visual Systems"],
+  "moreWorks": [2, 3, 4]
+}

@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — OCTOGUSS</title>
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #010100;
+      --fg:       #e8e6e1;
+      --muted:    #5a5855;
+      --accent:   #e8e6e1;
+      --border:   #1e1e1e;
+      --hover-bg: #141414;
+      --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ─── Scrollbar ────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* ─── Layout ───────────────────────────────────────── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── Header / Nav ─────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(1, 1, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    nav a {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--fg);
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover { color: var(--fg); }
+    nav a:hover::after { width: 100%; }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .back-link svg {
+      transition: transform 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--fg);
+    }
+
+    .back-link:hover svg {
+      transform: translateX(-4px);
+    }
+
+    .timestamp {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── Hero ─────────────────────────────────────────── */
+    #work-hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0 40px 48px;
+    }
+
+    .work-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    #work-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(1,1,0,0.3) 0%,
+        rgba(1,1,0,0.1) 30%,
+        rgba(1,1,0,0.4) 65%,
+        rgba(1,1,0,0.9) 85%,
+        #010100 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .work-hero-top {
+      position: relative;
+      z-index: 2;
+      padding-top: 108px; /* clear fixed header */
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .work-hero-category {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .work-hero-name {
+      font-size: clamp(28px, 4vw, 64px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 640px;
+    }
+
+    .work-hero-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .work-hero-intro {
+      max-width: 480px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .hero-down-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .hero-down-arrow:hover { color: var(--fg); }
+
+    .hero-down-arrow svg {
+      animation: arrowBounce 2s ease-in-out infinite;
+    }
+
+    .hero-down-arrow:hover svg {
+      animation-play-state: paused;
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ─── Section Base ─────────────────────────────────── */
+    section {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    /* ─── Overview ─────────────────────────────────────── */
+    #overview {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .overview-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-item:nth-child(odd) {
+      padding-right: 32px;
+      border-right: 1px solid var(--border);
+    }
+
+    .meta-item:nth-child(even) {
+      padding-left: 32px;
+    }
+
+    .meta-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+    }
+
+    .meta-value a {
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .meta-value a:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+
+    .meta-services {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .overview-description {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ─── Content Blocks ───────────────────────────────── */
+    #content-blocks {
+      padding: 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* image-full */
+    .block-image-full {
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .block-image-full img,
+    .block-image-full .img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .block-image-full:hover img,
+    .block-image-full:hover .img-placeholder {
+      transform: scale(1.02);
+    }
+
+    /* image-half */
+    .block-image-half {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .block-image-half-item {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+
+    .block-image-half-item img,
+    .block-image-half-item .img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .block-image-half-item:hover img,
+    .block-image-half-item:hover .img-placeholder {
+      transform: scale(1.03);
+    }
+
+    /* text block */
+    .block-text {
+      padding: 80px 40px;
+      max-width: 720px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .block-text-heading {
+      font-size: clamp(22px, 2.5vw, 36px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .block-text-body {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    /* image-text */
+    .block-image-text {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .block-image-text-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+
+    .block-image-text-img img,
+    .block-image-text-img .img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .block-image-text-img:hover img,
+    .block-image-text-img:hover .img-placeholder {
+      transform: scale(1.03);
+    }
+
+    .block-image-text-content {
+      padding: 60px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--border);
+    }
+
+    .block-image-text-heading {
+      font-size: clamp(20px, 2vw, 30px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .block-image-text-body {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    /* quote */
+    .block-quote {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .block-quote-text {
+      font-size: clamp(24px, 3vw, 48px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+
+    .block-quote-text::before {
+      content: '\201C';
+      color: var(--muted);
+    }
+
+    .block-quote-text::after {
+      content: '\201D';
+      color: var(--muted);
+    }
+
+    .block-quote-author {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .img-placeholder {
+      display: block;
+    }
+
+    /* ─── Skills ───────────────────────────────────────── */
+    #work-skills {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-list {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-chip {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-chip:hover {
+      border-color: var(--muted);
+      color: var(--fg);
+    }
+
+    /* ─── More Works ───────────────────────────────────── */
+    #more-works {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .more-works-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+
+    .more-works-title {
+      font-size: clamp(24px, 3vw, 42px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .section-link {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .section-link svg { transition: transform 0.2s; }
+    .section-link:hover { color: var(--fg); }
+    .section-link:hover svg { transform: translateX(4px); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .work-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--border);
+      cursor: pointer;
+    }
+
+    .work-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s;
+      opacity: 0.85;
+      display: block;
+    }
+
+    .work-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s;
+      opacity: 0.85;
+    }
+
+    .work-item:hover .work-thumb,
+    .work-item:hover .work-thumb-placeholder {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+
+    .work-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 28px 28px 24px;
+      background: linear-gradient(transparent, rgba(12,12,12,0.88));
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      transform: translateY(4px);
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .work-item:hover .work-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .work-name {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .work-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .work-tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--muted);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    /* ─── Footer ───────────────────────────────────────── */
+    footer {
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .footer-right a {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover { color: var(--fg); }
+
+    /* ─── Cursor Dot ────────────────────────────────────── */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 6px; height: 6px;
+      background: var(--fg);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+      mix-blend-mode: difference;
+    }
+
+    .cursor.expand {
+      width: 40px;
+      height: 40px;
+    }
+
+    /* ─── Fade-in animation ─────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Loading / Error states ───────────────────────── */
+    .loading-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .loading-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--muted);
+      border-radius: 50%;
+      animation: loadingPulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes loadingPulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.4); }
+    }
+
+    .error-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .error-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+
+    .error-title {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+    }
+
+    .error-link {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      transition: color 0.2s;
+    }
+
+    .error-link:hover { color: var(--fg); }
+
+    /* ─── Responsive ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      header { padding: 18px 24px; }
+      section { padding: 72px 24px; }
+
+      #work-hero {
+        padding: 0 24px 48px;
+      }
+
+      #overview {
+        padding: 72px 24px;
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .block-text {
+        padding: 60px 24px;
+      }
+
+      .block-image-half {
+        grid-template-columns: 1fr;
+      }
+
+      .block-image-half-item {
+        aspect-ratio: 4/3;
+      }
+
+      .block-image-text {
+        grid-template-columns: 1fr;
+      }
+
+      .block-image-text-img {
+        aspect-ratio: 4/3;
+      }
+
+      .block-image-text-content {
+        padding: 40px 24px;
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+
+      .block-quote {
+        padding: 72px 24px;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #work-skills { padding: 72px 24px; }
+      #more-works { padding: 72px 24px; }
+
+      .more-works-header {
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 40px;
+      }
+
+      .container { padding: 0 24px; }
+      nav { gap: 20px; }
+      .timestamp { display: none; }
+      footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+
+  <!-- ─── Header ──────────────────────────────────────── -->
+  <header>
+    <a href="index.html" class="logo">OCTOGUSS <span>—</span></a>
+    <nav>
+      <a href="index.html#about">Info</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="index.html" class="back-link" id="back-link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back
+    </a>
+  </header>
+
+  <!-- ─── Main content (injected by JS) ──────────────── -->
+  <div id="app">
+    <div class="loading-state">
+      <div class="loading-dot"></div>
+    </div>
+  </div>
+
+  <!-- ─── Footer ────────────────────────────────────────── -->
+  <footer id="site-footer" style="display:none;">
+    <p class="footer-copy">© 2026 Octoguss. All rights reserved.</p>
+    <div class="footer-right">
+      <a href="#">Privacy</a>
+      <a href="#">Colophon</a>
+      <span style="color:var(--muted);font-size:11px;letter-spacing:0.06em;">Designed &amp; built by Octoguss</span>
+    </div>
+  </footer>
+
+  <!-- ─── Scripts ───────────────────────────────────────── -->
+  <script>
+    // ── Utilities ─────────────────────────────────────────
+    function getParam(name) {
+      // Works with file:// (hash-based fallback) and http://
+      const url = new URL(window.location.href.replace(/^file:\/\//, 'http://localhost/'));
+      return url.searchParams.get(name);
+    }
+
+    function imgOrPlaceholder(src, gradient, alt, extraClass) {
+      const cls = extraClass ? ' ' + extraClass : '';
+      if (src) {
+        return `<img src="${src}" alt="${escHtml(alt || '')}" loading="lazy"${cls ? ` class="${cls.trim()}"` : ''}>`;
+      }
+      return `<div class="img-placeholder${cls}" style="background:${gradient || '#1a1a2e'};" aria-label="${escHtml(alt || '')}"></div>`;
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // ── Fetch helper — works file:// and http:// ──────────
+    async function fetchJSON(path) {
+      // Resolve relative to the HTML file's directory
+      const base = window.location.href.split('?')[0].replace(/[^/]+$/, '');
+      const fullURL = base + path;
+      const res = await fetch(fullURL);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }
+
+    // ── Render blocks ──────────────────────────────────────
+    function renderBlocks(blocks) {
+      return blocks.map(block => {
+        switch (block.type) {
+
+          case 'image-full':
+            return `
+              <div class="block-image-full fade-up">
+                ${imgOrPlaceholder(block.src, block.gradient, block.alt)}
+              </div>`;
+
+          case 'image-half':
+            return `
+              <div class="block-image-half">
+                ${(block.images || []).map(img => `
+                  <div class="block-image-half-item fade-up">
+                    ${imgOrPlaceholder(img.src, img.gradient, img.alt)}
+                  </div>`).join('')}
+              </div>`;
+
+          case 'text':
+            return `
+              <div class="block-text fade-up">
+                <h3 class="block-text-heading">${escHtml(block.heading || '')}</h3>
+                <p class="block-text-body">${escHtml(block.body || '')}</p>
+              </div>`;
+
+          case 'image-text':
+            return `
+              <div class="block-image-text fade-up">
+                <div class="block-image-text-img">
+                  ${imgOrPlaceholder(block.src, block.gradient, block.alt)}
+                </div>
+                <div class="block-image-text-content">
+                  <h3 class="block-image-text-heading">${escHtml(block.heading || '')}</h3>
+                  <p class="block-image-text-body">${escHtml(block.body || '')}</p>
+                </div>
+              </div>`;
+
+          case 'quote':
+            return `
+              <div class="block-quote fade-up">
+                <p class="block-quote-text">${escHtml(block.text || '')}</p>
+                ${block.author ? `<p class="block-quote-author">— ${escHtml(block.author)}</p>` : ''}
+              </div>`;
+
+          default:
+            return '';
+        }
+      }).join('');
+    }
+
+    // ── Render more works ──────────────────────────────────
+    function renderMoreWorks(works) {
+      return works.map(w => `
+        <div class="work-item fade-up" onclick="window.location.href='work.html?id=${w.id}'" style="cursor:pointer;">
+          ${w.image
+            ? `<img class="work-thumb" src="${escHtml(w.image)}" alt="${escHtml(w.name || '')}">`
+            : `<div class="work-thumb-placeholder" style="background:${w.gradient || w.hero?.gradient || '#1a1a2e'};"></div>`
+          }
+          <div class="work-overlay">
+            <span class="work-name">${escHtml(w.name || '')}</span>
+            <div class="work-tags">
+              ${(w.tags || (w.overview?.services) || []).map(t => `<span class="work-tag">${escHtml(t)}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ── Build full page HTML ───────────────────────────────
+    function buildPage(data, moreWorksData) {
+      const h = data.hero || {};
+      const o = data.overview || {};
+      const blocks = data.blocks || [];
+      const skills = data.skills || [];
+      const heroBg = h.image
+        ? `background-image: url('${escHtml(h.image)}');`
+        : `background: ${h.gradient || '#1a1a2e'};`;
+
+      const servicesHTML = Array.isArray(o.services)
+        ? `<div class="meta-services">${o.services.map(s => `<span>${escHtml(s)}</span>`).join('')}</div>`
+        : escHtml(o.services || '—');
+
+      const linkHTML = o.link && o.link !== '#'
+        ? `<a href="${escHtml(o.link)}" target="_blank" rel="noopener">Visit project ↗</a>`
+        : `<span style="color:var(--muted)">—</span>`;
+
+      return `
+        <!-- ─── Work Hero ──────────────────────────── -->
+        <section id="work-hero">
+          <div class="work-hero-bg" style="${heroBg}"></div>
+          <div class="work-hero-top">
+            <p class="work-hero-category">${escHtml(data.category || '')}</p>
+            <h1 class="work-hero-name">${escHtml(data.name || '')}</h1>
+          </div>
+          <div class="work-hero-bottom">
+            <p class="work-hero-intro">${escHtml(h.intro || '')}</p>
+            <a class="hero-down-arrow" href="#overview" aria-label="Scroll to overview">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 4v12M4 10l6 6 6-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </section>
+
+        <!-- ─── Overview ───────────────────────────── -->
+        <section id="overview">
+          <p class="section-label fade-up">Project Overview</p>
+          <div class="overview-grid">
+            <div class="overview-meta fade-up">
+              <div class="meta-item">
+                <p class="meta-label">Client</p>
+                <p class="meta-value">${escHtml(o.client || '—')}</p>
+              </div>
+              <div class="meta-item">
+                <p class="meta-label">Year</p>
+                <p class="meta-value">${escHtml(o.year || '—')}</p>
+              </div>
+              <div class="meta-item">
+                <p class="meta-label">Services</p>
+                <div class="meta-value">${servicesHTML}</div>
+              </div>
+              <div class="meta-item">
+                <p class="meta-label">Link</p>
+                <p class="meta-value">${linkHTML}</p>
+              </div>
+            </div>
+            <div class="fade-up">
+              <p class="overview-description">${escHtml(o.description || '')}</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─── Content Blocks ─────────────────────── -->
+        <div id="content-blocks">
+          ${renderBlocks(blocks)}
+        </div>
+
+        <!-- ─── Skills ────────────────────────────── -->
+        ${skills.length > 0 ? `
+        <section id="work-skills">
+          <p class="section-label fade-up">Disciplines</p>
+          <div class="skills-list fade-up">
+            ${skills.map(s => `<span class="skill-chip">${escHtml(s)}</span>`).join('')}
+          </div>
+        </section>` : ''}
+
+        <!-- ─── More Works ─────────────────────────── -->
+        ${moreWorksData.length > 0 ? `
+        <section id="more-works">
+          <div class="more-works-header fade-up">
+            <div>
+              <p class="section-label" style="margin-bottom:12px;">More Projects</p>
+              <h2 class="more-works-title">Selected Work</h2>
+            </div>
+            <a href="index.html#work" class="section-link">
+              All work
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <div class="work-grid">
+            ${renderMoreWorks(moreWorksData)}
+          </div>
+        </section>` : ''}
+      `;
+    }
+
+    // ── Init ───────────────────────────────────────────────
+    async function init() {
+      const app = document.getElementById('app');
+      const footer = document.getElementById('site-footer');
+
+      // Get work ID from URL param
+      const id = getParam('id') || '1';
+
+      try {
+        // Load main work data
+        const data = await fetchJSON(`works/${id}.json`);
+
+        // Update page title
+        document.title = `${data.name} — OCTOGUSS`;
+
+        // Load more works data in parallel, cross-referencing content.json
+        let moreWorksData = [];
+        if (data.moreWorks && data.moreWorks.length > 0) {
+          // Try fetching from content.json first, fall back to individual work JSONs
+          let contentWorks = null;
+          try {
+            const content = await fetchJSON('content.json');
+            contentWorks = content.work || null;
+          } catch (e) {
+            // content.json not available or no work key
+          }
+
+          if (contentWorks) {
+            // content.json has work array — match by id or index
+            moreWorksData = data.moreWorks
+              .map(wid => {
+                const found = contentWorks.find(w => String(w.id) === String(wid));
+                if (found) return { ...found, id: wid };
+                // fallback: use positional index (1-based)
+                const byIndex = contentWorks[wid - 1];
+                if (byIndex) return { ...byIndex, id: wid };
+                return null;
+              })
+              .filter(Boolean);
+          } else {
+            // Try fetching individual work JSONs
+            const results = await Promise.allSettled(
+              data.moreWorks.map(wid => fetchJSON(`works/${wid}.json`))
+            );
+            moreWorksData = results
+              .map((r, i) => r.status === 'fulfilled' ? r.value : null)
+              .filter(Boolean);
+          }
+        }
+
+        // Render page
+        app.innerHTML = buildPage(data, moreWorksData);
+        footer.style.display = '';
+
+        // Init animations after DOM is updated
+        requestAnimationFrame(() => {
+          initAnimations();
+          initCursorInteractives();
+        });
+
+      } catch (err) {
+        console.error('Failed to load work:', err);
+        app.innerHTML = `
+          <div class="error-state">
+            <p class="error-code">404 / Work Not Found</p>
+            <h1 class="error-title">This project doesn't exist.</h1>
+            <a href="index.html" class="error-link">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Back to index
+            </a>
+          </div>
+        `;
+        footer.style.display = '';
+      }
+    }
+
+    // ── Animations ─────────────────────────────────────────
+    function initAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach((el, i) => {
+        // Stagger siblings within the same parent
+        const siblings = Array.from(el.parentElement.querySelectorAll(':scope > .fade-up'));
+        const sibIdx = siblings.indexOf(el);
+        if (sibIdx > 0) {
+          el.style.transitionDelay = `${sibIdx * 80}ms`;
+        }
+        observer.observe(el);
+      });
+    }
+
+    // ── Cursor ─────────────────────────────────────────────
+    const cursorEl = document.getElementById('cursor');
+    let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    (function animateCursor() {
+      curX += (mouseX - curX) * 0.15;
+      curY += (mouseY - curY) * 0.15;
+      cursorEl.style.left = curX + 'px';
+      cursorEl.style.top  = curY + 'px';
+      requestAnimationFrame(animateCursor);
+    })();
+
+    function initCursorInteractives() {
+      document.querySelectorAll('a, button, .work-item').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorEl.classList.add('expand'));
+        el.addEventListener('mouseleave', () => cursorEl.classList.remove('expand'));
+      });
+    }
+
+    // Run on initial load too for header links
+    initCursorInteractives();
+
+    // Start
+    init();
+  </script>
+
+</body>
+</html>
