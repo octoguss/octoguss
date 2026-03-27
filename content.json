@@ -86,12 +86,7 @@
     "skills": [
       "Brand Identity",
       "UI / UX Design",
-      "Web Development",
-      "Motion Design",
-      "Figma",
-      "React",
-      "TypeScript",
-      "Three.js",
+      "Acessibility",
       "Creative Direction"
     ],
     "stats": [
@@ -100,16 +95,16 @@
         "label": "Projects Delivered"
       },
       {
-        "number": "6+",
+        "number": "16+",
         "label": "Years of Experience"
       },
       {
-        "number": "18",
-        "label": "Happy Clients"
+        "number": "",
+        "label": ""
       },
       {
-        "number": "∞",
-        "label": "Iterations Made"
+        "number": "",
+        "label": ""
       }
     ]
   },
